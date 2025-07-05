@@ -3,9 +3,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connectToDb = async () => {
+export const connectToDb = async () => {
   try {
-    await mongoose.connect('mongodb+srv://mohdmubbashir71:MmaMongodbAtlas@cluster0.v0h3b0q.mongodb.net/user-behavior?retryWrites=true&w=majority&appName=Cluster0', {
+    await mongoose.connect(process.env.MONGOURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       bufferCommands: false
@@ -13,7 +13,6 @@ const connectToDb = async () => {
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
+    throw error;
   }
 };
-
-connectToDb();
