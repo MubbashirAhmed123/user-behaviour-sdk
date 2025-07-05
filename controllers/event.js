@@ -50,6 +50,7 @@ export const eventController=async (req, res) => {
         hash.update(fingerprintUid);
         const md5Hash = hash.digest('hex');
         console.log(`MD5 hash of "${fingerprintUid}": ${md5Hash}`);
+        console.log('deviceDetails',deviceDetails)
   
         const newSessionId = generateSessionId();
         const newSession = new Session({

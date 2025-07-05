@@ -4,7 +4,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const connectToDb=()=>{
-    mongoose.connect(process.env.MONGOURI)
+    mongoose.connect(process.env.MONGOURI,{
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      bufferCommands: false
+    })
     .then(() => {
         console.log('Connected to MongoDB');
       })
