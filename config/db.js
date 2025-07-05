@@ -3,18 +3,17 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connectToDb=()=>{
-    mongoose.connect(process.env.MONGOURI,{
+const connectToDb = async () => {
+  try {
+    await mongoose.connect(process.env.MONGOURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       bufferCommands: false
-    })
-    .then(() => {
-        console.log('Connected to MongoDB');
-      })
-      .catch((error) => {
-        console.error('Error connecting to MongoDB:', error);
-      });
-}
+    });
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+  }
+};
 
-connectToDb()
+connectToDb();
