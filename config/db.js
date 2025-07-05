@@ -5,7 +5,7 @@ dotenv.config();
 
 const connectToDb = async () => {
   try {
-    await mongoose.connect(process.env.MONGOURI, {
+    await mongoose.connect('mongodb+srv://mohdmubbashir71:MmaMongodbAtlas@cluster0.v0h3b0q.mongodb.net/user-behavior?retryWrites=true&w=majority&appName=Cluster0', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       bufferCommands: false
