@@ -3,6 +3,7 @@ import { DailyUserStats, Session, UserEvent } from "../schema/index.js";
 export const dayWiseData=async (req, res) => {
     try {
       const { uId } = req.params;
+      console.log(uId)
       const dateFormat = "%Y-%m-%d";
       const today = new Date().toISOString().split("T")[0];
       const matchToday = {
@@ -66,7 +67,7 @@ export const dayWiseData=async (req, res) => {
       const accountStatsAgg = await Session.aggregate([
         {
           $match: {
-            customUid: { $ne: null },
+            // customUid: { $ne: null },
             createdAt: {
               $gte: new Date(`${today}T00:00:00.000Z`),
               $lt: new Date(`${today}T23:59:59.999Z`)
@@ -207,7 +208,7 @@ export const dayWiseData=async (req, res) => {
           totalUids: accountStats[0]?.totalUIds || 0,
           totalUserAccounts: accountStats[0]?.customUids || [],
           // totalDevices: accountStats[0]?.uIds || [],
-          totalDevices:accountStats[0].fingerprintUids
+          totalDevices:accountStats[0]?.fingerprintUids
         },
         typingSpeed: {
           avgWordSpeed: typingStats[0]?.avgWordSpeed || 0,
